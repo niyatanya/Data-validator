@@ -1,5 +1,6 @@
 plugins {
     application
+    checkstyle
 }
 
 application { mainClass.set("hexlet.code.App") }
