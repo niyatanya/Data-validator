@@ -2,9 +2,10 @@ plugins {
     application
     checkstyle
     jacoco
+    id("io.freefair.lombok") version "8.6"
 }
 
-application { mainClass.set("hexlet.code.App") }
+application { mainClass.set("hexlet.code.Validator") }
 
 group = "hexlet.code"
 version = "1.0-SNAPSHOT"
