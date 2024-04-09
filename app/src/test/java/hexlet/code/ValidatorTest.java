@@ -16,14 +16,14 @@ public class ValidatorTest {
     }
 
     @Test
-    public void stringSchemaTestNormal() {
+    public void stringSchemaTestNormal() throws NullPointerException {
         assertTrue(stringSchema.isValid("hexlet"));
         assertTrue(stringSchema.isValid(""));
         assertTrue(stringSchema.isValid(null));
     }
 
     @Test
-    public void stringSchemaTestRequired() {
+    public void stringSchemaTestRequired() throws NullPointerException {
         stringSchema.required();
         assertTrue(stringSchema.isValid("hexlet"));
         assertFalse(stringSchema.isValid(""));
@@ -31,16 +31,15 @@ public class ValidatorTest {
     }
 
     @Test
-    public void stringSchemaTestMinLength() {
+    public void stringSchemaTestMinLength() throws NullPointerException {
         stringSchema.minLength(4);
         assertTrue(stringSchema.isValid("hexlet"));
         assertFalse(stringSchema.isValid("hex"));
     }
 
     @Test
-    public void stringSchemaTestContains() {
+    public void stringSchemaTestContains() throws NullPointerException {
         assertTrue(stringSchema.contains("hex").isValid("hexlet"));
         assertFalse(stringSchema.contains("hes").isValid("hexlet"));
     }
-
 }
