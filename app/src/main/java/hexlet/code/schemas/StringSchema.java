@@ -1,15 +1,12 @@
 package hexlet.code.schemas;
 
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import java.util.Map;
 import java.util.function.Predicate;
+import java.lang.String;
 
 @NoArgsConstructor
-@AllArgsConstructor
 public class StringSchema extends BaseSchema<String> {
 
-    Map<String, Predicate<String>> checkers;
     @Override
     public StringSchema required() {
         Predicate<String> requiredFunction = ((value) -> value != null && !value.isEmpty());
@@ -24,7 +21,7 @@ public class StringSchema extends BaseSchema<String> {
     }
 
     public StringSchema contains(String content) {
-        Predicate<String> containsFunction = ((value) -> value.matches(content));
+        Predicate<String> containsFunction = ((value) -> value.contains(content));
         checkers.put("contains", containsFunction);
         return this;
     }
