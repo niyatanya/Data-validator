@@ -5,12 +5,14 @@ start:
 	./gradlew run
 
 build:
+	./gradlew clean
 	./gradlew build
 
 clean:
 	./gradlew clean
 
 test:
+	./gradlew clean
 	./gradlew test
 
 report:
