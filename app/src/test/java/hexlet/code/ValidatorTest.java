@@ -3,6 +3,7 @@ package hexlet.code;
 import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
+import hexlet.code.schemas.BaseSchema;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,14 +17,16 @@ public class ValidatorTest {
     private static StringSchema stringSchema;
     private static NumberSchema numberSchema;
     private static MapSchema<String, String> mapSchema;
+
+    private static MapSchema<String, String> mapSchema2;
+    private static Validator val = new Validator();
+
     @BeforeEach
     public void preparation() {
-        Validator val = new Validator();
         stringSchema = val.string();
-        Validator val1 = new Validator();
-        numberSchema = val1.number();
-        Validator val2 = new Validator();
-        mapSchema = val2.map();
+        numberSchema = val.number();
+        mapSchema = val.map();
+        mapSchema2 = val.map();
     }
 
     @Test
@@ -106,5 +109,28 @@ public class ValidatorTest {
         assertFalse(mapSchema.isValid(map));
         map.put("Kate", "singer");
         assertTrue(mapSchema.isValid(map));
+    }
+
+    @Test
+    public void mapShapedSchemaTest() {
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        schemas.put("firstName", val.string().required());
+        schemas.put("lastName", val.string().required().minLength(2));
+        mapSchema2.shape(schemas);
+
+        Map<String, String> human1 = new HashMap<>();
+        human1.put("firstName", "John");
+        human1.put("lastName", "Smith");
+        assertTrue(mapSchema2.isValid(human1));
+
+        Map<String, String> human2 = new HashMap<>();
+        human2.put("firstName", "John");
+        human2.put("lastName", null);
+        assertFalse(mapSchema2.isValid(human2));
+
+        Map<String, String> human3 = new HashMap<>();
+        human3.put("firstName", "Anna");
+        human3.put("lastName", "B");
+        assertFalse(mapSchema2.isValid(human3));
     }
 }
