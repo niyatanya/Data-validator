@@ -5,12 +5,6 @@ import java.util.function.Predicate;
 
 @NoArgsConstructor
 public class NumberSchema extends BaseSchema<Integer> {
-    @Override
-    public NumberSchema required() {
-        Predicate<Integer> requiredFunction = ((value) -> value != null);
-        checkers.put("required", requiredFunction);
-        return this;
-    }
 
     public NumberSchema positive() {
         Predicate<Integer> positiveFunction = ((value) -> value > 0);
