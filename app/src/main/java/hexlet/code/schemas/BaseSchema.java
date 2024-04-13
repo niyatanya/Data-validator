@@ -7,6 +7,10 @@ import java.util.function.Predicate;
 
 public abstract class BaseSchema<T> {
     protected Map<String, Predicate<T>> checkers = new LinkedHashMap<>();
+    public void addCheck(String checkName, Predicate<T> fn) {
+        checkers.put(checkName, fn);
+    }
+
     public BaseSchema<T> required() {
         Predicate<T> requiredFunction = ((value) -> value != null);
         checkers.put("required", requiredFunction);
