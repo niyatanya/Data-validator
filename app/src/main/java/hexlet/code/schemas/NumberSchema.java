@@ -8,7 +8,7 @@ public class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema positive() {
         addCheck(
                 "positive",
-                value -> value > 0
+                value ->  value == null || value > 0
         );
         return this;
     }
@@ -16,7 +16,7 @@ public class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema range(int startIndex, int finalIndex) {
         addCheck(
                 "range",
-                value -> value >= startIndex || value <= finalIndex
+                value -> value >= startIndex && value <= finalIndex
         );
         return this;
     }

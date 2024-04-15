@@ -8,7 +8,7 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class NormalMapSchemaTest {
+public class MapSchemaTest {
     @Test
     public void testMapValidator() {
         var v = new Validator();
