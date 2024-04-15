@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 public class StringSchema extends BaseSchema<String> {
 
     @Override
-    public StringSchema required() {
+    public final StringSchema required() {
         addCheck(
                 "required",
                 value -> value != null && !value.isEmpty()
@@ -14,7 +14,7 @@ public class StringSchema extends BaseSchema<String> {
         return this;
     }
 
-    public StringSchema minLength(int minLength) {
+    public final StringSchema minLength(int minLength) {
         addCheck(
                 "minLength",
                 value -> value.length() > minLength
@@ -22,7 +22,7 @@ public class StringSchema extends BaseSchema<String> {
         return this;
     }
 
-    public StringSchema contains(String content) {
+    public final StringSchema contains(String content) {
         addCheck(
                 "contains",
                 value -> value.contains(content)

@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class NumberSchema extends BaseSchema<Integer> {
 
-    public NumberSchema positive() {
+    public final NumberSchema positive() {
         addCheck(
                 "positive",
                 value ->  value == null || value > 0
@@ -13,7 +13,7 @@ public class NumberSchema extends BaseSchema<Integer> {
         return this;
     }
 
-    public NumberSchema range(int startIndex, int finalIndex) {
+    public final NumberSchema range(int startIndex, int finalIndex) {
         addCheck(
                 "range",
                 value -> value >= startIndex && value <= finalIndex

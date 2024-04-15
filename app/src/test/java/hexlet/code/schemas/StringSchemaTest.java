@@ -11,7 +11,7 @@ public class StringSchemaTest {
     private static StringSchema stringSchema;
 
     @BeforeEach
-    public void preparation() {
+    public final void preparation() {
         Validator val = new Validator();
         stringSchema = val.string();
     }

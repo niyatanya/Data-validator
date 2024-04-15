@@ -7,13 +7,19 @@ import java.util.function.Predicate;
 
 public abstract class BaseSchema<T> {
     protected Map<String, Predicate<T>> checkers = new LinkedHashMap<>();
-    public void addCheck(String checkName, Predicate<T> fn) {
+    public final void addCheck(String checkName, Predicate<T> fn) {
         checkers.put(checkName, fn);
     }
 
+    /**
+     * <p>Добавляет проверку на пустое поле и/или на null.</p>
+     * @return Возвращает схему, в которую добавлена эта проверка.
+     */
     public BaseSchema<T> required() {
-        Predicate<T> requiredFunction = ((value) -> value != null);
-        checkers.put("required", requiredFunction);
+        addCheck(
+                "required",
+                value -> value != null
+        );
         return this;
     }
 

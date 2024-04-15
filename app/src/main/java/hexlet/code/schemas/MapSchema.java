@@ -6,7 +6,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class MapSchema extends BaseSchema<Map<?, ?>> {
 
-    public MapSchema sizeof(int size) {
+    public final MapSchema sizeof(int size) {
         addCheck(
                 "sizeof",
                 value -> value.size() == size
@@ -14,7 +14,7 @@ public class MapSchema extends BaseSchema<Map<?, ?>> {
         return this;
     }
 
-    public <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
+    public final <T> MapSchema shape(Map<String, BaseSchema<T>> schemas) {
         addCheck(
                 "shape",
                 map -> {
